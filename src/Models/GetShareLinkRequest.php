@@ -6,25 +6,27 @@ namespace Aliyun\PDS\SDK\Models;
 
 use AlibabaCloud\Tea\Model;
 
-class GetUserAccessTokenModel extends Model
+/**
+ * get_share request.
+ */
+class GetShareLinkRequest extends Model
 {
-    /**
-     * @var string[]
-     */
     public $headers;
 
     /**
-     * @var GetUserAccessTokenResponse
+     * @description share_id
+     *
+     * @example z6e81Up4u3GDBoJ741dm8z8fZBc2dh8gW
+     *
+     * @var string
      */
-    public $body;
+    public $shareId;
     protected $_name = [
-        'headers' => 'headers',
-        'body'    => 'body',
+        'shareId' => 'share_id',
     ];
 
     public function validate()
     {
-        Model::validateRequired('body', $this->body, true);
     }
 
     public function toMap()
@@ -33,8 +35,8 @@ class GetUserAccessTokenModel extends Model
         if (null !== $this->headers) {
             $res['headers'] = $this->headers;
         }
-        if (null !== $this->body) {
-            $res['body'] = null !== $this->body ? $this->body->toMap() : null;
+        if (null !== $this->shareId) {
+            $res['share_id'] = $this->shareId;
         }
 
         return $res;
@@ -43,7 +45,7 @@ class GetUserAccessTokenModel extends Model
     /**
      * @param array $map
      *
-     * @return GetUserAccessTokenModel
+     * @return GetShareLinkRequest
      */
     public static function fromMap($map = [])
     {
@@ -51,8 +53,8 @@ class GetUserAccessTokenModel extends Model
         if (isset($map['headers'])) {
             $model->headers = $map['headers'];
         }
-        if (isset($map['body'])) {
-            $model->body = GetUserAccessTokenResponse::fromMap($map['body']);
+        if (isset($map['share_id'])) {
+            $model->shareId = $map['share_id'];
         }
 
         return $model;

@@ -6,7 +6,7 @@ namespace Aliyun\PDS\SDK\Models;
 
 use AlibabaCloud\Tea\Model;
 
-class GetUserAccessTokenModel extends Model
+class ListFileActivityModel extends Model
 {
     /**
      * @var string[]
@@ -14,7 +14,7 @@ class GetUserAccessTokenModel extends Model
     public $headers;
 
     /**
-     * @var GetUserAccessTokenResponse
+     * @var ListFileActivityResponse
      */
     public $body;
     protected $_name = [
@@ -43,7 +43,7 @@ class GetUserAccessTokenModel extends Model
     /**
      * @param array $map
      *
-     * @return GetUserAccessTokenModel
+     * @return ListFileActivityModel
      */
     public static function fromMap($map = [])
     {
@@ -52,7 +52,7 @@ class GetUserAccessTokenModel extends Model
             $model->headers = $map['headers'];
         }
         if (isset($map['body'])) {
-            $model->body = GetUserAccessTokenResponse::fromMap($map['body']);
+            $model->body = ListFileActivityResponse::fromMap($map['body']);
         }
 
         return $model;

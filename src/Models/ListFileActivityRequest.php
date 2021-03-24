@@ -6,10 +6,7 @@ namespace Aliyun\PDS\SDK\Models;
 
 use AlibabaCloud\Tea\Model;
 
-/**
- * 获取office文档预览地址
- */
-class GetOfficePreviewUrlRequest extends Model
+class ListFileActivityRequest extends Model
 {
     public $headers;
 
@@ -21,49 +18,46 @@ class GetOfficePreviewUrlRequest extends Model
     public $additionData;
 
     /**
-     * @description drive_id
+     * @description DriveID
      *
-     * @example 1
+     * @example "1001"
      *
      * @var string
      */
     public $driveId;
 
     /**
-     * @description file_id
+     * @description FileID
+     *
+     * @example "6020d97b1e5d179e7d994348b0ee1eb789cfa8d3"
      *
      * @var string
      */
     public $fileId;
 
     /**
-     * @var string
+     * @description Limit, default
+     *
+     * @var int
      */
-    public $referer;
+    public $limit;
 
     /**
-     * @description share_id, either share_id or drive_id is required
-     *
-     * @example 0018d25b-faed-4f5c-a67b-414e160b7953
+     * @description Marker
      *
      * @var string
      */
-    public $shareId;
+    public $marker;
     protected $_name = [
         'additionData' => 'addition_data',
         'driveId'      => 'drive_id',
         'fileId'       => 'file_id',
-        'referer'      => 'referer',
-        'shareId'      => 'share_id',
+        'limit'        => 'limit',
+        'marker'       => 'marker',
     ];
 
     public function validate()
     {
-        Model::validatePattern('driveId', $this->driveId, '[0-9]+');
-        Model::validatePattern('fileId', $this->fileId, '[a-z0-9.-_]{1,50}');
-        Model::validateRequired('fileId', $this->fileId, true);
-        Model::validateMaxLength('fileId', $this->fileId, 50);
-        Model::validateMinLength('fileId', $this->fileId, 40);
     }
 
     public function toMap()
@@ -81,11 +75,11 @@ class GetOfficePreviewUrlRequest extends Model
         if (null !== $this->fileId) {
             $res['file_id'] = $this->fileId;
         }
-        if (null !== $this->referer) {
-            $res['referer'] = $this->referer;
+        if (null !== $this->limit) {
+            $res['limit'] = $this->limit;
         }
-        if (null !== $this->shareId) {
-            $res['share_id'] = $this->shareId;
+        if (null !== $this->marker) {
+            $res['marker'] = $this->marker;
         }
 
         return $res;
@@ -94,7 +88,7 @@ class GetOfficePreviewUrlRequest extends Model
     /**
      * @param array $map
      *
-     * @return GetOfficePreviewUrlRequest
+     * @return ListFileActivityRequest
      */
     public static function fromMap($map = [])
     {
@@ -111,11 +105,11 @@ class GetOfficePreviewUrlRequest extends Model
         if (isset($map['file_id'])) {
             $model->fileId = $map['file_id'];
         }
-        if (isset($map['referer'])) {
-            $model->referer = $map['referer'];
+        if (isset($map['limit'])) {
+            $model->limit = $map['limit'];
         }
-        if (isset($map['share_id'])) {
-            $model->shareId = $map['share_id'];
+        if (isset($map['marker'])) {
+            $model->marker = $map['marker'];
         }
 
         return $model;
